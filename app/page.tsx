@@ -12,7 +12,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0 overflow-hidden">
          <video autoPlay muted loop playsInline className="object-cover w-full h-full brightness-50">
             <source
-              src="https://rostrumglobal.co.uk/wp-content/themes/rostrumglobal/assets/images/video.mp4"
+              src="https://rynjq19w9hrzwz6f.public.blob.vercel-storage.com/4267429-uhd_3840_2160_30fps.mp4"
               type="video/mp4"
             />
             Your browser does not support the video tag.
