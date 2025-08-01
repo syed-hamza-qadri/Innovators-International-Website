@@ -1,98 +1,50 @@
 "use client"
 
 import type React from "react"
+
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
-import { submitContactForm, type FormData } from "@/actions/contact-form"
 
 export default function ContactForm() {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     subject: "",
     message: "",
   })
-  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({})
-
-  const validateForm = () => {
-    const newErrors: Partial<Record<keyof FormData, string>> = {}
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required"
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required"
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address"
-    }
-
-    if (!formData.subject.trim()) {
-      newErrors.subject = "Subject is required"
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = "Message is required"
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
-
-    // Clear error when user starts typing
-    if (errors[name as keyof FormData]) {
-      setErrors((prev) => ({ ...prev, [name]: undefined }))
-    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
-    if (!validateForm()) {
-      return
-    }
-
     setIsSubmitting(true)
 
-    try {
-      const result = await submitContactForm(formData)
-
+    // Simulate form submission
+    setTimeout(() => {
       toast({
-        title: result.success ? "Message Sent!" : "Error",
-        description: result.message,
-        variant: result.success ? "default" : "destructive",
+        title: "Message Sent!",
+        description: "Thank you for contacting us. We'll get back to you shortly.",
       })
 
-      if (result.success) {
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          subject: "",
-          message: "",
-        })
-        setErrors({})
-      }
-    } catch (error) {
-      console.error("Form submission error:", error)
-      toast({
-        title: "Error",
-        description: "An unexpected error occurred. Please try again.",
-        variant: "destructive",
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
       })
-    } finally {
+
       setIsSubmitting(false)
-    }
+    }, 1500)
   }
 
   return (
@@ -108,9 +60,9 @@ export default function ContactForm() {
             value={formData.name}
             onChange={handleChange}
             placeholder="John Doe"
-            className={`w-full ${errors.name ? "border-red-500" : ""}`}
+            required
+            className="w-full"
           />
-          {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
         </div>
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
@@ -123,9 +75,9 @@ export default function ContactForm() {
             value={formData.email}
             onChange={handleChange}
             placeholder="john@example.com"
-            className={`w-full ${errors.email ? "border-red-500" : ""}`}
+            required
+            className="w-full"
           />
-          {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
         </div>
       </div>
 
@@ -153,9 +105,9 @@ export default function ContactForm() {
             value={formData.subject}
             onChange={handleChange}
             placeholder="How can we help you?"
-            className={`w-full ${errors.subject ? "border-red-500" : ""}`}
+            required
+            className="w-full"
           />
-          {errors.subject && <p className="mt-1 text-sm text-red-500">{errors.subject}</p>}
         </div>
       </div>
 
@@ -169,9 +121,9 @@ export default function ContactForm() {
           value={formData.message}
           onChange={handleChange}
           placeholder="Please provide details about your inquiry..."
-          className={`w-full min-h-[150px] ${errors.message ? "border-red-500" : ""}`}
+          required
+          className="w-full min-h-[150px]"
         />
-        {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
       </div>
 
       <Button

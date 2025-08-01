@@ -20,44 +20,42 @@ export default function CounterSection() {
     if (inView && !hasAnimated.current) {
       hasAnimated.current = true
 
-      const continentsInterval = setInterval(() => {
-        setContinents((prev) => {
-          if (prev < 4) return prev + 1
-          clearInterval(continentsInterval)
-          return prev
-        })
-      }, 300)
+      // Optimize animation by using fewer intervals and faster completion
+      const animationDuration = 1000 // 1 second total animation
+      const continentsTarget = 4
+      const countriesTarget = 10
+      const yearsTarget = 10
+      const clientsTarget = 100
 
-      const countriesInterval = setInterval(() => {
-        setCountries((prev) => {
-          if (prev < 10) return prev + 1
-          clearInterval(countriesInterval)
-          return prev
-        })
-      }, 100)
+      const steps = 10 // Fewer steps for smoother but less CPU-intensive animation
+      const interval = animationDuration / steps
 
-      const yearsInterval = setInterval(() => {
-        setYears((prev) => {
-          if (prev < 10) return prev + 1
-          clearInterval(yearsInterval)
-          return prev
-        })
-      }, 100)
+      const continentsStep = continentsTarget / steps
+      const countriesStep = countriesTarget / steps
+      const yearsStep = yearsTarget / steps
+      const clientsStep = clientsTarget / steps
 
-      const clientsInterval = setInterval(() => {
-        setClients((prev) => {
-          if (prev < 100) return prev + 5
-          clearInterval(clientsInterval)
-          return prev
-        })
-      }, 50)
+      let currentStep = 0
 
-      return () => {
-        clearInterval(continentsInterval)
-        clearInterval(countriesInterval)
-        clearInterval(yearsInterval)
-        clearInterval(clientsInterval)
-      }
+      const animationInterval = setInterval(() => {
+        currentStep++
+
+        setContinents(Math.min(Math.round(continentsStep * currentStep), continentsTarget))
+        setCountries(Math.min(Math.round(countriesStep * currentStep), countriesTarget))
+        setYears(Math.min(Math.round(yearsStep * currentStep), yearsTarget))
+        setClients(Math.min(Math.round(clientsStep * currentStep), clientsTarget))
+
+        if (currentStep >= steps) {
+          clearInterval(animationInterval)
+          // Ensure final values are exact
+          setContinents(continentsTarget)
+          setCountries(countriesTarget)
+          setYears(yearsTarget)
+          setClients(clientsTarget)
+        }
+      }, interval)
+
+      return () => clearInterval(animationInterval)
     }
   }, [inView])
 

@@ -14,6 +14,8 @@ export default function LocationsPage() {
             fill
             className="object-cover brightness-50"
             priority
+            quality={80}
+            sizes="100vw"
           />
         </div>
         <div className="container mx-auto px-4 md:px-6 relative z-10 h-full flex items-center">
@@ -34,7 +36,8 @@ export default function LocationsPage() {
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, 80vw"
               className="object-cover object-center"
-              priority
+              loading="eager"
+              quality={80}
             />
           </div>
 
@@ -59,6 +62,9 @@ export default function LocationsPage() {
                   alt="London Office"
                   fill
                   className="object-cover"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={75}
                 />
               </div>
               <div className="p-6">
@@ -133,6 +139,9 @@ export default function LocationsPage() {
                   alt="Dubai Office"
                   fill
                   className="object-cover"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={75}
                 />
               </div>
               <div className="p-6">
@@ -208,6 +217,8 @@ export default function LocationsPage() {
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, 50vw"
                   className="object-cover object-top"
+                  loading="lazy"
+                  quality={75}
                 />
               </div>
               <div className="p-6">
@@ -283,6 +294,8 @@ export default function LocationsPage() {
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, 50vw"
                   className="object-cover"
+                  loading="lazy"
+                  quality={75}
                 />
               </div>
               <div className="p-6">

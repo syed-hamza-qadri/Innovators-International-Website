@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <div className="mb-4 -ml-5 relative">
+            <div className="mb-4 -ml-5">
               <Image
                 src="https://innovatorsinternationalcopy.vercel.app/logo.png"
                 alt="Innovators International"

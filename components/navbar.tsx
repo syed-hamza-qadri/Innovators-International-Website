@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu, Phone, Mail } from "lucide-react"
@@ -12,14 +12,31 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
+  // Optimize scroll handler with throttling
+  const handleScroll = useCallback(() => {
+    const scrollPosition = window.scrollY
+    setIsScrolled(scrollPosition > 10)
+  }, [])
+
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
+    // Add throttling to scroll event
+    let timeoutId: NodeJS.Timeout | null = null
+
+    const throttledScrollHandler = () => {
+      if (timeoutId === null) {
+        timeoutId = setTimeout(() => {
+          handleScroll()
+          timeoutId = null
+        }, 100) // 100ms throttle
+      }
     }
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", throttledScrollHandler)
+    return () => {
+      window.removeEventListener("scroll", throttledScrollHandler)
+      if (timeoutId) clearTimeout(timeoutId)
+    }
+  }, [handleScroll])
 
   const closeDrawer = () => {
     setIsOpen(false)

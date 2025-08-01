@@ -10,10 +10,9 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center">
         <div className="absolute inset-0 z-0 overflow-hidden">
-         <video autoPlay muted loop playsInline className="object-cover w-full h-full brightness-50">
+          <video autoPlay muted loop playsInline className="object-cover w-full h-full brightness-50">
             <source
               src="https://rynjq19w9hrzwz6f.public.blob.vercel-storage.com/4267429-uhd_3840_2160_30fps.mp4"
-              type="video/mp4"
             />
             Your browser does not support the video tag.
           </video>
@@ -36,9 +35,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Featured In Section */}
-      {/*<FeaturedLogos />*/}
 
       {/* About Section */}
       <section className="py-20 bg-gray-50">
@@ -79,6 +75,7 @@ export default function Home() {
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, 50vw"
                 className="object-cover object-center"
                 priority
+                quality={80}
               />
             </div>
           </div>
@@ -223,7 +220,6 @@ export default function Home() {
               </p>
               <div>
                 <p className="font-semibold">Sophie Thompson</p>
-                {/*<p className="text-gray-400 text-sm">Marketing Director</p>*/}
               </div>
             </div>
 
@@ -252,7 +248,6 @@ export default function Home() {
               </p>
               <div>
                 <p className="font-semibold">John Anderson</p>
-                {/*<p className="text-gray-400 text-sm">CEO, Tech Solutions</p>*/}
               </div>
             </div>
           </div>

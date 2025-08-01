@@ -174,7 +174,7 @@ export default function PortfolioPage() {
             </p>
           </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
             {/* Client Logo 1 */}
             <div className="flex items-center justify-center p-4">
               <div className="h-16 w-32 bg-gray-200 rounded flex items-center justify-center">
@@ -220,7 +220,7 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-     {/* Testimonials */}
+      {/* Testimonials */}
       <section className="py-20 bg-gray-900 text-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-16">
@@ -256,7 +256,7 @@ export default function PortfolioPage() {
               </p>
               <div>
                 <p className="font-semibold">Sophie Thompson</p>
-                {/* <p className="text-gray-400 text-sm">Marketing Director</p>*/}
+              {/* <p className="text-gray-400 text-sm">Marketing Director</p>*/}
               </div>
             </div>
 
@@ -285,7 +285,7 @@ export default function PortfolioPage() {
               </p>
               <div>
                 <p className="font-semibold">John Anderson</p>
-                {/* <p className="text-gray-400 text-sm">CEO, Tech Solutions</p>*/}
+               {/* <p className="text-gray-400 text-sm">CEO, Tech Solutions</p>*/}
               </div>
             </div>
           </div>

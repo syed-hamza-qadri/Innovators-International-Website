@@ -4,8 +4,8 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import KeyboardShortcuts from "@/components/keyboard-shortcuts"
 
+// Optimize font loading
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -29,8 +29,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Preconnect to critical domains */}
+        <link rel="preconnect" href="https://rynjq19w9hrzwz6f.public.blob.vercel-storage.com" />
+        <link rel="dns-prefetch" href="https://rynjq19w9hrzwz6f.public.blob.vercel-storage.com" />
+      </head>
       <body className={inter.className}>
-        <KeyboardShortcuts />
         <Navbar />
         <main>{children}</main>
         <Footer />
