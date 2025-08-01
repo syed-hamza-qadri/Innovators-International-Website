@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 174 33% 56%; /* Refined teal */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 270 45% 42%; /* Purple */
+    --secondary-foreground: 210 40% 98%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 340 65% 45%; /* Magenta */
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 174 33% 56%; /* Teal */
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .gradient-heading {
+    @apply bg-gradient-to-r from-teal-400 via-purple-600 to-magenta-600 bg-clip-text text-transparent;
+  }
+
+  .teal-gradient-bg {
+    @apply bg-gradient-to-r from-teal-500 to-teal-400;
+  }
+
+  .purple-gradient-bg {
+    @apply bg-gradient-to-r from-purple-700 to-purple-600;
+  }
+
+  .magenta-gradient-bg {
+    @apply bg-gradient-to-r from-magenta-700 to-magenta-600;
+  }
+
+  .brand-card {
+    @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-l-4 hover:translate-y-[-4px];
+  }
+
+  .teal-card {
+    @apply brand-card border-teal-400;
+  }
+
+  .purple-card {
+    @apply brand-card border-purple-600;
+  }
+
+  .magenta-card {
+    @apply brand-card border-magenta-600;
+  }
+
+  .orange-card {
+    @apply brand-card border-orange-400;
+  }
+}
